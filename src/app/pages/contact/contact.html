@@ -1,0 +1,301 @@
+<section id="contato" class="py-20 md:py-28 bg-primary-dark text-white relative overflow-hidden">
+
+    <!-- Padrão de Fundo de Pontos Sutil -->
+    <div
+        class="
+            absolute 
+            inset-0 
+            opacity-10 
+            bg-[radial-gradient(#ffffff_1px,transparent_1px)] 
+            [background-size:20px_20px] 
+            pointer-events-none
+    ">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <!-- Coluna Esquerda: Texto e Garantia -->
+            <div class="lg:col-span-6">
+
+                <!-- Tag / Badge Superior -->
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-8 h-[2px] bg-solar"></span>
+                    <span class="text-xs md:text-sm font-semibold tracking-wider text-solar uppercase">
+                        Vamos conversar?
+                    </span>
+                </div>
+
+                <!-- Título Principal -->
+                <h2 
+                    class="
+                        text-3xl 
+                        sm:text-4xl 
+                        lg:text-5xl 
+                        font-normal 
+                        text-white 
+                        leading-[1.15] 
+                        mb-6 
+                        tracking-tight
+                ">
+                    Seu projeto <br class="hidden sm:inline" />
+                    começa com uma <br />
+                    <span class="italic font-serif font-medium text-solar">boa conversa.</span>
+                </h2>
+
+                <!-- Subtítulo -->
+                <p class="text-white/70 text-base sm:text-lg font-normal leading-relaxed mb-10 max-w-lg">
+                    Envie seus dados e conte um pouco sobre o seu consumo. Robert entra em contato para fazer uma
+                    análise inicial sem compromisso.
+                </p>
+
+                <!-- Garante / Selo sem compromisso -->
+                <div class="flex items-start gap-4">
+                    <div
+                        class="
+                            w-10 h-10 
+                            rounded-full 
+                            bg-solar 
+                            text-primary-dark 
+                            flex 
+                            items-center 
+                            justify-center 
+                            shrink-0 
+                            mt-1 
+                            shadow-md
+                    ">
+                        <mat-icon class="!w-5 !h-5 !text-[20px] font-bold">check</mat-icon>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold text-base mb-0.5">Sem compromisso.</h4>
+                        <p class="text-white/60 text-sm">
+                            Seus dados serão usados apenas para este atendimento.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Coluna Direita: Card do Formulário -->
+            <div class="lg:col-span-6 flex justify-center lg:justify-end">
+
+                <div
+                    class="
+                        w-full 
+                        max-w-xl 
+                        bg-white 
+                        text-text 
+                        rounded-3xl 
+                        p-8 
+                        sm:p-10 
+                        shadow-2xl 
+                        border 
+                        border-white/20
+                ">
+
+                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+                        <!-- Campo 1: Nome -->
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-text mb-2">
+                                Como podemos chamar você?
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                formControlName="name" 
+                                placeholder="Seu nome"
+                                class="
+                                    w-full 
+                                    px-4 py-3.5 
+                                    rounded-xl 
+                                    border 
+                                    border-border/80 
+                                    text-text 
+                                    placeholder:text-text-muted/60 
+                                    focus:outline-none 
+                                    focus:border-solar focus:ring-2
+                                    focus:ring-solar/20 transition-all text-base
+                                "
+                                [class.border-red-500]="isSubmitted && contactForm.get('name')?.invalid" 
+                            />
+                            @if (isSubmitted && contactForm.get('name')?.invalid) {
+                            <span class="text-xs text-red-500 mt-1 block">Por favor, informe seu nome.</span>
+                            }
+                        </div>
+
+                        <!-- Grid de 2 Colunas: WhatsApp e Cidade -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                            <!-- WhatsApp -->
+                            <div>
+                                <label 
+                                    for="whatsapp" 
+                                    class="block text-sm font-semibold text-text mb-2
+                                ">
+                                    WhatsApp
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="whatsapp" 
+                                    formControlName="whatsapp"
+                                    placeholder="(00) 00000-0000"
+                                    class="
+                                        w-full 
+                                        px-4 py-3.5 
+                                        rounded-xl 
+                                        border 
+                                        border-border/80 
+                                        text-text 
+                                        placeholder:text-text-muted/60 
+                                        focus:outline-none 
+                                        focus:border-solar focus:ring-2 
+                                        focus:ring-solar/20 
+                                        transition-all 
+                                        text-base
+                                "
+                                    [class.border-red-500]="isSubmitted && contactForm.get('whatsapp')?.invalid" 
+                                />
+                                @if (isSubmitted && contactForm.get('whatsapp')?.invalid) {
+                                <span class="text-xs text-red-500 mt-1 block">WhatsApp inválido.</span>
+                                }
+                            </div>
+
+                            <!-- Cidade -->
+                            <div>
+                                <label 
+                                    for="city" 
+                                    class="block text-sm font-semibold text-text mb-2
+                                ">
+                                    Cidade
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="city" 
+                                    formControlName="city" 
+                                    placeholder="Sua cidade"
+                                    class="
+                                        w-full 
+                                        px-4 py-3.5 
+                                        rounded-xl 
+                                        border 
+                                        border-border/80 
+                                        text-text 
+                                        placeholder:text-text-muted/60 
+                                        focus:outline-none 
+                                        focus:border-solar 
+                                        focus:ring-2 
+                                        focus:ring-solar/20 
+                                        transition-all 
+                                        text-base
+                                    "
+                                    [class.border-red-500]="isSubmitted && contactForm.get('city')?.invalid" 
+                                />
+                                @if (isSubmitted && contactForm.get('city')?.invalid) {
+                                <span class="text-xs text-red-500 mt-1 block">Informe sua cidade.</span>
+                                }
+                            </div>
+
+                        </div>
+
+                        <!-- Campo 3: Onde deseja instalar? (Select) -->
+                        <div>
+                            <label 
+                                for="installationType" 
+                                class="block text-sm font-semibold text-text mb-2
+                            ">
+                                Onde deseja instalar?
+                            </label>
+                            <div class="relative">
+                                <select id="installationType" formControlName="installationType"
+                                    class="
+                                        w-full 
+                                        px-4 py-3.5 
+                                        rounded-xl 
+                                        border 
+                                        border-border/80 
+                                        text-text 
+                                        bg-white 
+                                        appearance-none 
+                                        focus:outline-none 
+                                        focus:border-solar 
+                                        focus:ring-2 
+                                        focus:ring-solar/20 
+                                        transition-all 
+                                        text-base 
+                                        cursor-pointer
+                                    "
+                                    [class.border-red-500]="isSubmitted && contactForm.get('installationType')?.invalid
+                                ">
+                                    <option value="" disabled selected>Selecione uma opção</option>
+                                    <option value="Residência">Residência</option>
+                                    <option value="Empresa / Comércio">Empresa / Comércio</option>
+                                    <option value="Agronegócio / Zona Rural">Agronegócio / Zona Rural</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                <!-- Ícone de seta para baixo do Select -->
+                                <mat-icon
+                                    class="
+                                        !w-5 !h-5 
+                                        !text-[20px] 
+                                        text-text-muted 
+                                        absolute 
+                                        right-4 
+                                        top-1/2 
+                                        -translate-y-1/2 
+                                        pointer-events-none
+                                ">
+                                    expand_more
+                                </mat-icon>
+                            </div>
+                            @if (isSubmitted && contactForm.get('installationType')?.invalid) {
+                            <span class="text-xs text-red-500 mt-1 block">
+                                Selecione o local da instalação.
+                            </span>
+                            }
+                        </div>
+
+                        <!-- Botão Submit CTA -->
+                        <button 
+                            type="submit"
+                            class="
+                                w-full 
+                                py-4 px-6 
+                                bg-solar 
+                                hover:bg-solar-dark 
+                                text-primary-dark 
+                                font-bold 
+                                text-base 
+                                rounded-xl 
+                                shadow-lg 
+                                hover:shadow-xl 
+                                transition-all 
+                                duration-300 
+                                flex 
+                                items-center 
+                                justify-center 
+                                gap-2 
+                                group mt-2
+                        ">
+                            <span>Solicitar análise gratuita</span>
+                            <mat-icon
+                                class="
+                                    !w-5 !h-5 
+                                    !text-[20px] 
+                                    transition-transform 
+                                    duration-300 
+                                    group-hover:translate-x-1
+                            ">
+                                arrow_forward
+                            </mat-icon>
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

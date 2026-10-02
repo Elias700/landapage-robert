@@ -5,6 +5,7 @@ import { Home } from './pages/home/home';
 import { Advantages } from './pages/advantages/advantages';
 import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { About } from './pages/about/about';
+import { Contact } from './pages/contact/contact';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { About } from './pages/about/about';
     Home,
     Advantages,
     HowItWorks,
-    About
+    About,
+    Contact
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'
