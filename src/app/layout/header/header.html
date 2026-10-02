@@ -1,13 +1,26 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <header class="sticky top-0 z-50 bg-background/90 backdrop-blur-md transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
 
         <!-- Logo -->
-        <a href="#inicio" (click)="scrollToSection('#inicio')" class="flex items-center gap-3 group focus:outline-none">
+        <a 
+            href="#inicio" 
+            (click)="scrollToSection('#inicio')" 
+            class="flex items-center gap-3 group focus:outline-none
+        ">
             <!-- Ícone Sol -->
             <div
-                class="w-10 h-10 rounded-2xl bg-solar flex items-center justify-center text-primary-dark shadow-sm group-hover:scale-105 transition-transform">
+                class="
+                    w-10 h-10 
+                    rounded-2xl 
+                    bg-solar 
+                    flex 
+                    items-center 
+                    justify-center 
+                    text-primary-dark 
+                    shadow-sm 
+                    group-hover:scale-105 
+                    transition-transform
+            ">
                 <mat-icon class="!w-6 !h-6 !text-[24px]">wb_sunny</mat-icon>
             </div>
             <!-- Texto do Nome -->
@@ -19,22 +32,48 @@
         <!-- Menu Desktop -->
         <nav class="hidden md:flex items-center gap-8">
             @for (item of navItems; track item.label) {
-            <a [href]="item.href" (click)="scrollToSection(item.href)"
-                class="text-primary font-medium hover:text-solar-dark transition-colors text-base">
+            <a 
+                [href]="item.href" 
+                (click)="scrollToSection(item.href)"
+                class="
+                    text-primary 
+                    font-medium 
+                    hover:text-solar-dark 
+                    transition-colors 
+                    text-base
+            ">
                 {{ item.label }}
             </a>
             }
 
             <!-- Botão CTA -->
-            <a href="#contato" (click)="scrollToSection('#contato')"
-                class="bg-contact hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95 inline-block text-base">
+            <a 
+                href="#contato" 
+                (click)="scrollToSection('#contato')"
+                class="
+                    bg-contact 
+                    hover:bg-primary-dark 
+                    text-white 
+                    font-semibold 
+                    px-6 py-3 
+                    rounded-xl 
+                    transition-all 
+                    shadow-sm 
+                    hover:shadow-md 
+                    active:scale-95 
+                    inline-block text-base
+            ">
                 Falar com Robert
             </a>
         </nav>
 
-        <!-- Botão Menu Mobile (Visível apenas em telas pequenas) -->
-        <button type="button" (click)="toggleMobileMenu()" class="md:hidden text-primary p-2 focus:outline-none"
-            aria-label="Abrir Menu">
+        <!-- Botão Menu Mobile -->
+        <button 
+            type="button" 
+            (click)="toggleMobileMenu()" 
+            class="md:hidden text-primary p-2 focus:outline-none"
+            aria-label="Abrir Menu
+        ">
             <mat-icon class="!w-7 !h-7 !text-[28px]">
                 {{ isMobileMenuOpen() ? 'close' : 'menu' }}
             </mat-icon>
@@ -43,15 +82,46 @@
 
     <!-- Menu Responsivo Mobile -->
     @if (isMobileMenuOpen()) {
-    <div class="md:hidden bg-background border-t border-border px-6 py-6 shadow-xl flex flex-col gap-4 animate-fade-in">
+    <div 
+        class="md:hidden 
+        bg-background border-t 
+        border-border 
+        px-6 py-6 
+        shadow-xl 
+        flex 
+        flex-col 
+        gap-4 
+        animate-fade-in
+    ">
         @for (item of navItems; track item.label) {
         <a [href]="item.href" (click)="scrollToSection(item.href)"
-            class="text-primary font-medium text-lg py-2 border-b border-border/40 hover:text-solar-dark transition-colors">
+            class="
+                text-primary 
+                font-medium 
+                text-lg 
+                py-2 
+                border-b 
+                border-border/40 
+                hover:text-solar-dark 
+                transition-colors
+        ">
             {{ item.label }}
         </a>
         }
-        <a href="#contato" (click)="scrollToSection('#contato')"
-            class="bg-contact hover:bg-primary-dark text-white font-semibold text-center py-3.5 rounded-xl transition-all shadow-md mt-2">
+        <a 
+            href="#contato" 
+            (click)="scrollToSection('#contato')"
+            class="
+                bg-contact 
+                hover:bg-primary-dark 
+                text-white 
+                font-semibold 
+                text-center 
+                py-3.5 
+                rounded-xl 
+                transition-all 
+                shadow-md mt-2
+        ">
             Falar com Robert
         </a>
     </div>
