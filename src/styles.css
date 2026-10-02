@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+@theme {
+    --color-primary: rgba(21, 59, 61, 1);
+    --color-primary-dark: rgba(11, 45, 47, 1);
+    --color-contact: rgba(16, 61, 63, 1);
+    --color-footer: rgba(9, 42, 44, 1);
+
+    --color-solar: rgba(246, 185, 59, 1);
+    --color-solar-light: rgba(255, 223, 138, 1);
+    --color-solar-soft: rgba(248, 212, 116, 1);
+    --color-solar-dark: rgba(208, 148, 25, 1);
+
+    --color-background: rgba(255, 254, 250, 1);
+    --color-background-alt: rgba(247, 245, 237, 1);
+    --color-mint: rgba(220, 235, 228, 1);
+
+    --color-text: rgba(21, 59, 61, 1);
+    --color-text-muted: rgba(98, 117, 118, 1);
+    --color-border: rgba(21, 59, 61, 0.14);
+    --color-white: rgba(255, 255, 255, 1);
+}
