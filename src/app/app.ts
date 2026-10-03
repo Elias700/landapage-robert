@@ -6,6 +6,7 @@ import { Advantages } from './pages/advantages/advantages';
 import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { About } from './pages/about/about';
 import { Contact } from './pages/contact/contact';
+import { Footer } from './layout/footer/footer';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { Contact } from './pages/contact/contact';
     Advantages,
     HowItWorks,
     About,
-    Contact
+    Contact,
+    Footer
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'

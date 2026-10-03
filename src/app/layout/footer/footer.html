@@ -1,0 +1,127 @@
+<footer class="bg-primary text-white pt-16 pb-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+        <!-- Seção Superior do Footer -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-12">
+
+            <!-- Coluna 1: Logo e Marca -->
+            <div class="md:col-span-5 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="
+                            w-9 h-9 
+                            rounded-xl 
+                            bg-solar 
+                            text-primary-dark 
+                            flex 
+                            items-center 
+                            justify-center 
+                            font-bold 
+                            shadow-md
+                    ">
+                        <mat-icon class="!w-6 !h-6 !text-[24px]">wb_sunny</mat-icon>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">
+                        Robert Solar
+                    </span>
+                </div>
+                <p class="text-white/60 text-sm leading-relaxed max-w-sm">
+                    Energia solar com atendimento próximo, claro e feito para você.
+                </p>
+            </div>
+
+            <!-- Coluna 2: Navegação -->
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="text-xs font-semibold tracking-widest text-solar uppercase">
+                    Navegue
+                </h4>
+                <ul class="space-y-3 text-sm">
+                    <li>
+                        <button 
+                            type="button" 
+                            routerLink="/advantagens"
+                            class="text-white/70 hover:text-white transition-colors cursor-pointer
+                        ">
+                            Vantagens
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                            type="button" 
+                            routerLink="/how-it-works"
+                            class="text-white/70 hover:text-white transition-colors cursor-pointer
+                        ">
+                            Como funciona
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                            type="button" 
+                            routerLink="/about"
+                            class="text-white/70 hover:text-white transition-colors cursor-pointer
+                        ">
+                            Sobre Robert
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3: Fale Comigo -->
+            <div class="md:col-span-4 space-y-4">
+                <h4 class="text-xs font-semibold tracking-widest text-solar uppercase">
+                    Fale comigo
+                </h4>
+                <div>
+                    <button 
+                        type="button" 
+                        
+                        class="
+                            inline-flex 
+                            items-center 
+                            gap-3 
+                            text-white 
+                            hover:text-solar 
+                            transition-colors 
+                            font-medium 
+                            text-base 
+                            group 
+                            cursor-pointer
+                    ">
+                        <mat-icon 
+                            class="
+                                !w-5 !h-5 
+                                !text-[20px] 
+                                text-white/80 
+                                group-hover:text-solar 
+                                transition-colors
+                        ">
+                            chat_bubble_outline
+                        </mat-icon>
+                        <span>Solicitar atendimento</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Divisória Linha Suave -->
+        <div class="w-full h-[1px] bg-white/10 mb-8"></div>
+
+        <!-- Seção Inferior: Copyright e Slogan -->
+        <div 
+            class="
+                flex 
+                flex-col 
+                sm:flex-row 
+                items-center 
+                justify-between 
+                gap-4 
+                text-xs 
+                text-white/50
+        ">
+            <p>© {{ currentYear }} Robert Lazaro. Todos os direitos reservados.</p>
+            <p class="font-normal">Energia limpa. Futuro brilhante.</p>
+        </div>
+
+    </div>
+</footer>
