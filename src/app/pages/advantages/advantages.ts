@@ -17,8 +17,8 @@ export class Advantages {
     {
       number: '01',
       category: 'ECONOMIA',
-      title: 'Sua conta de luz mais leve',
-      description: 'Produza a própria energia e reduza a dependência dos aumentos da tarifa elétrica.',
+      title: 'Sua conta de luz suave',
+      description: 'Produza a propria energia e elimine a obrigatoriedade dos aumentos da tarifa elétrica.',
       icon: 'account_balance_wallet'
     },
     {
