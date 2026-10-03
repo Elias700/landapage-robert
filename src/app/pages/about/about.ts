@@ -15,5 +15,6 @@ import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive
 })
 export class About {
   // profileImageUrl: string | null = null;
-  profileImageUrl = 'robert.png';
+  profileImageUrl = 'robert2.jpg';
 }
+
