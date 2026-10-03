@@ -1,0 +1,162 @@
+<section 
+  id="nosso-trabalho" 
+  class="py-16 md:py-24 bg-white text-text relative overflow-hidden" 
+  appRevealOnScroll
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Cabeçalho com Título e Botões de Navegação -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+
+      <!-- Título Principal -->
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 mb-3">
+          <span class="w-8 h-[2px] bg-solar"></span>
+          <span 
+            class="
+              text-xs 
+              md:text-sm 
+              font-semibold 
+              tracking-wider 
+              text-text-muted 
+              uppercase
+            "
+          >
+            Trabalho na Prática
+          </span>
+          <span class="w-8 h-[2px] bg-solar"></span>
+        </div>
+
+        <h2 
+          class="
+            text-3xl 
+            sm:text-4xl 
+            lg:text-5xl 
+            font-normal 
+            text-text 
+            leading-[1.15] 
+            tracking-tight
+          "
+        >
+          Confira alguns dos nossos <br class="hidden sm:inline" />
+          <span class="italic font-serif font-medium text-solar-dark">
+            projetos e instalações.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Setas de Navegação -->
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <button 
+          (click)="scrollLeft()"
+          aria-label="Anterior"
+          class="
+            w-12 h-12 
+            rounded-full 
+            border 
+            border-gray-200 
+            flex 
+            items-center 
+            justify-center 
+            text-text 
+            hover:bg-solar 
+            hover:border-solar 
+            transition-colors 
+            duration-300 
+            shadow-sm 
+            active:scale-95
+          "
+      >
+          <mat-icon class="!w-6 !h-6 !text-[22px]">arrow_back</mat-icon>
+        </button>
+
+        <button 
+          (click)="scrollRight()"
+          aria-label="Próximo"
+          class="
+            w-12 h-12 
+            rounded-full 
+            border 
+            border-gray-200 
+            flex items-center 
+            justify-center 
+            text-text 
+            hover:bg-solar 
+            hover:border-solar 
+            transition-colors 
+            duration-300 
+            shadow-sm 
+            active:scale-95
+          "
+        >
+          <mat-icon class="!w-6 !h-6 !text-[22px]">arrow_forward</mat-icon>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Carrossel (1 imagem no mobile, cards maiores no desktop) -->
+    <div 
+      #carouselContainer
+      class="
+        flex 
+        gap-4 
+        sm:gap-6 
+        lg:gap-8 
+        overflow-x-auto 
+        snap-x snap-mandatory 
+        scrollbar-none 
+        pb-4 
+        scroll-smooth
+      "
+    >
+      @for (item of workItems; track item.id) {
+        <div 
+          class="
+            w-full sm:w-[380px] md:w-[460px] lg:w-[520px] 
+            h-[260px] sm:h-[280px] md:h-[340px] lg:h-[380px]
+            rounded-3xl 
+            overflow-hidden 
+            shadow-md 
+            bg-gray-100 
+            group 
+            border 
+            border-gray-100
+            snap-center sm:snap-start
+            flex-shrink-0
+          "
+        >
+          @if (item.type === 'video') {
+            <!-- Vídeo -->
+            <video 
+              [src]="item.src" 
+              [poster]="item.poster" 
+              autoplay 
+              muted 
+              [muted]="true" 
+              loop 
+              playsinline 
+              preload="auto"
+              class="w-full h-full object-cover"
+            ></video>
+          } @else {
+            <!-- Imagem -->
+            <img 
+              [src]="item.src" 
+              alt="Projeto de energia solar realizado"
+              class="
+                w-full 
+                h-full 
+                object-cover 
+                group-hover:scale-105 
+                transition-transform 
+                duration-500
+              " 
+            />
+          }
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
