@@ -1,4 +1,4 @@
-<section id="sobre" class="py-20 md:py-28 bg-white text-text relative overflow-hidden">
+<section id="sobre" class="py-20 md:py-28 bg-white text-text relative overflow-hidden" appRevealOnScroll>
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
@@ -40,50 +40,33 @@
                             border-white/10
                     ">
 
-                        @if (profileImageUrl) {
-                        <!-- Foto Real do Consultor -->
                         <img 
                             [src]="profileImageUrl" 
-                            alt="Robert Lazaro - Consultor de Energia Solar"
-                            class="w-full h-full object-cover rounded-t-[160px]" 
+                            alt="Robert Lazaro - Consultor de Energia Solar" 
+                            class="
+                                absolute 
+                                inset-0 
+                                w-full 
+                                h-full 
+                                object-cover 
+                                object-[85%_25%] 
+                                scale-105 
+                                hover:scale-110 
+                                transition-transform 
+                                duration-500
+                            "
                         />
-                        } @else {
-                        <!-- Placeholder quando não houver imagem fornecida -->
+                        <!-- Gradiente suave inferior para integrar a imagem -->
                         <div 
                             class="
-                                flex 
-                                flex-col 
-                                items-center 
-                                justify-center 
-                                text-center 
-                                text-white/90 
-                                my-auto
+                                absolute 
+                                inset-0 
+                                bg-gradient-to-t 
+                                from-primary-dark/40 
+                                via-transparent to-transparent 
+                                pointer-events-none
                         ">
-                            <span 
-                                class="
-                                    text-6xl 
-                                    sm:text-7xl 
-                                    font-bold 
-                                    tracking-wider 
-                                    font-sans 
-                                    mb-3 
-                                    text-white
-                            ">
-                                RL
-                            </span>
-                            <span 
-                                class="
-                                    text-xs 
-                                    sm:text-sm 
-                                    tracking-[0.2em] 
-                                    font-medium 
-                                    text-solar 
-                                    uppercase
-                            ">
-                                Sua foto aqui
-                            </span>
-                        </div>
-                        }
+                        </div>   
 
                     </div>
 
@@ -152,22 +135,22 @@
                         mb-6 
                         tracking-tight
                 ">
-                    Olá, eu sou o 
+                    Olá, eu sou 
                     <span class="italic font-serif font-medium text-solar">
-                        Robert Lazaro.
+                        Robert Lázaro.
                     </span>
                 </h2>
 
                 <!-- Descrição - Parágrafo 1 -->
                 <p class="text-text font-normal text-lg sm:text-xl leading-relaxed mb-6">
-                    Ajudo famílias e empresas a entenderem, de forma simples, como a energia solar pode fazer sentido
-                    para sua realidade.
+                    Nosso trabalho é ajudar famílias e empresas a reduzirem despesas da 
+                    energia elétrica através de soluções energéticas renováveis.
                 </p>
 
                 <!-- Descrição - Parágrafo 2 -->
                 <p class="text-text-muted text-base sm:text-lg font-normal leading-relaxed mb-10">
-                    Meu papel é ouvir o que você precisa, explicar cada detalhe com transparência e acompanhar sua
-                    jornada para uma energia mais econômica e sustentável.
+                    Nossa missão é entender a sua necessidade, explicar cada etapa com total transparência 
+                    e caminhar ao seu lado rumo a uma energia  econômica e sustentável.
                 </p>
 
                 <!-- Divisória Linha Suave -->
@@ -176,7 +159,7 @@
                 <!-- Assinatura e Cargo -->
                 <div>
                     <h3 class="text-2xl font-serif italic text-text font-medium mb-1">
-                        Robert Lazaro
+                        Robert Lázaro
                     </h3>
                     <p class="text-xs font-semibold tracking-[0.15em] text-text-muted uppercase">
                         Consultor de Energia Solar
