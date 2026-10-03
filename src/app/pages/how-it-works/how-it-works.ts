@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { signal } from '@angular/core';
+ import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
 
 @Component({
   selector: 'app-how-it-works',
   imports: [ 
     CommonModule, 
-    MatIconModule
+    MatIconModule,
+    RevealOnScrollDirective
   ],
   templateUrl: './how-it-works.html',
   styleUrl: './how-it-works.css',
