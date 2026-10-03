@@ -7,6 +7,7 @@ import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { About } from './pages/about/about';
 import { Contact } from './pages/contact/contact';
 import { Footer } from './layout/footer/footer';
+import { OurWork } from './pages/our-work/our-work';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ import { Footer } from './layout/footer/footer';
     HowItWorks,
     About,
     Contact,
-    Footer
+    Footer,
+    OurWork
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'
