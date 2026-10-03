@@ -1,24 +1,55 @@
-<section id="inicio"
-  class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden bg-primary-dark">
+<section 
+  id="inicio" 
+  class="
+    relative 
+    min-h-[calc(100vh-80px)] 
+    flex 
+    items-center 
+    justify-center 
+    overflow-hidden 
+    bg-primary-dark
+    pt-20 md:pt-24
+  ">
 
   <!-- Imagem de Fundo com Opacidade e Gradiente Escuro -->
   <div class="absolute inset-0 z-0">
-    <!-- Tag da Imagem de Painel Solar -->
-    <img src="https://images.pexels.com/photos/9875445/pexels-photo-9875445.jpeg" alt="Painéis solares fotovoltaicos"
-      class="w-full h-full object-cover object-center opacity-30 select-none" />
-    <!-- Gradientes de sobreposição (Overlays) para harmonizar a leitura dos textos -->
+    <img 
+      src="https://images.pexels.com/photos/9875445/pexels-photo-9875445.jpeg" 
+      alt="Painéis solares fotovoltaicos"
+      class="
+        w-full 
+        h-full 
+        object-cover 
+        object-center 
+        opacity-30 
+        select-none
+    "/>
+    <!-- Gradientes de sobreposição (Overlays) -->
     <div class="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/80 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/60"></div>
   </div>
 
   <!-- Conteúdo Principal -->
-  <div
-    class="relative z-10 max-w-7xl w-full mx-auto px-6 lg:px-12 py-16 md:py-24 flex flex-col justify-between min-h-[calc(100vh-100px)]">
+  <div class="
+      relative 
+      z-10 
+      max-w-7xl 
+      w-full 
+      mx-auto 
+      px-6 
+      lg:px-12 
+      py-12 
+      md:py-16 
+      flex 
+      flex-col 
+      justify-between 
+      min-h-[calc(100vh-100px)]
+    ">
 
-    <div class="max-w-2xl my-auto pt-8">
+    <div class="max-w-2xl my-auto pt-4">
 
-      <!-- Tag/Badge Superior -->
-      <div class="inline-flex items-center gap-2 mb-6">
+      <!-- Tag/Badge Superior (Aparece Primeiro) -->
+      <div class="inline-flex items-center gap-2 mb-6 animate-fade-in-up delay-100">
         <span class="w-8 h-[2px] bg-solar"></span>
         <mat-icon class="!w-4 !h-4 !text-[16px] text-solar">wb_sunny</mat-icon>
         <span class="text-xs md:text-sm font-semibold tracking-wider text-solar uppercase">
@@ -26,31 +57,100 @@
         </span>
       </div>
 
-      <!-- Título Principal (H1) -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.15] mb-6 tracking-tight">
+      <!-- Título Principal H1 (Efeito de entrada em letras/linha) -->
+      <h1 class="
+          text-4xl 
+          sm:text-5xl 
+          lg:text-6xl 
+          font-normal 
+          text-white 
+          leading-[1.15] 
+          mb-6 
+          tracking-tight
+          animate-fade-in-up
+          delay-200
+        ">
         Transforme luz do sol em
-        <span class="italic font-serif font-medium text-solar">economia.</span>
+        <span
+          class="
+            italic 
+            font-serif 
+            font-medium 
+            text-solar 
+            inline-block 
+            hover:scale-105 
+            transition-transform 
+            duration-300
+        ">
+          economia.
+        </span>
       </h1>
 
-      <!-- Subtítulo -->
-      <p class="text-base sm:text-lg text-white/80 font-normal leading-relaxed mb-10 max-w-xl">
-        Descubra como produzir sua própria energia pode reduzir custos e valorizar o seu patrimônio, com uma consultoria
-        próxima e transparente.
+      <!-- Subtítulo (Segunda Entrada) -->
+      <p
+        class="
+          text-base 
+          sm:text-lg 
+          text-white/80 
+          font-normal 
+          leading-relaxed 
+          mb-10 
+          max-w-xl 
+          animate-fade-in-up 
+          delay-300
+      ">
+        Descubra como produzir sua própria energia pode reduzir custos e valorizar o seu patrimônio,
+        com uma consultoria próxima e transparente.
       </p>
 
-      <!-- Botões de Ação -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+      <!-- Botões de Ação (Terceira Entrada) -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-fade-in-up delay-400">
         <!-- CTA Principal -->
-        <a href="#contato" (click)="scrollToSection('#contato')"
-          class="bg-solar hover:bg-solar-soft text-primary-dark font-semibold px-7 py-4 rounded-xl transition-all shadow-lg hover:shadow-solar/20 active:scale-95 inline-flex items-center justify-center gap-2 text-base group">
+        <a 
+          href="#contato" 
+          (click)="scrollToSection('#contato')" 
+          class="
+            bg-solar 
+            hover:bg-solar-soft 
+            text-primary-dark 
+            font-semibold 
+            px-7 py-4 
+            rounded-xl 
+            transition-all 
+            shadow-lg hover:shadow-solar/20 
+            active:scale-95 
+            inline-flex items-center 
+            justify-center 
+            gap-2 
+            text-base 
+            group
+        ">
           <span>Quero uma análise gratuita</span>
-          <mat-icon
-            class="!w-5 !h-5 !text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</mat-icon>
+          <mat-icon class="!w-5 !h-5 !text-[20px] group-hover:translate-x-1 transition-transform">
+            arrow_forward
+          </mat-icon>
         </a>
 
         <!-- CTA Secundário -->
-        <a href="#vantagens" (click)="scrollToSection('#vantagens')"
-          class="bg-primary/40 hover:bg-primary/60 text-white border border-white/20 backdrop-blur-sm font-medium px-7 py-4 rounded-xl transition-all active:scale-95 inline-flex items-center justify-center text-base">
+        <a 
+          href="#vantagens" 
+          (click)="scrollToSection('#vantagens')" 
+          class="
+            bg-primary/40 
+            hover:bg-primary/60 
+            text-white border 
+            border-white/20 
+            backdrop-blur-sm 
+            font-medium 
+            px-7 py-4 
+            rounded-xl 
+            transition-all 
+            active:scale-95 
+            inline-flex 
+            items-center 
+            justify-center 
+            text-base
+        ">
           Conhecer as vantagens
         </a>
       </div>
@@ -58,22 +158,76 @@
     </div>
 
     <!-- Rodapé da Seção Hero -->
-    <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-6 pt-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-6 pt-8">
 
       <!-- Espaçador Esquerda -->
       <div class="hidden md:block"></div>
 
-      <!-- Indicador Descubra -->
-      <a href="#vantagens" (click)="scrollToSection('#vantagens')"
-        class="flex flex-col items-center gap-2 group cursor-pointer justify-self-center text-white/60 hover:text-solar transition-colors">
+      <!-- Indicador Descubra com Animação de Scroll -->
+      <a 
+        href="#vantagens" 
+        (click)="scrollToSection('#vantagens')" 
+        class="
+          flex 
+          flex-col 
+          items-center 
+          gap-2 
+          group 
+          cursor-pointer 
+          justify-self-center 
+          text-white/60 
+          hover:text-solar 
+          transition-colors
+          animate-fade-in-up
+          delay-500
+      ">
         <span class="text-xs uppercase tracking-widest font-semibold">Descubra</span>
-        <div class="w-[1px] h-8 bg-white/30 group-hover:bg-solar transition-colors"></div>
+        <div
+          class="
+            relative 
+            w-6 h-10 
+            border-2 
+            border-white/30 
+            group-hover:border-solar 
+            rounded-full 
+            flex 
+            justify-center 
+            p-1 
+            transition-colors
+        ">
+          <div class="w-1.5 h-2.5 bg-solar rounded-full animate-scroll-dot"></div>
+        </div>
       </a>
 
       <!-- Card Flutuante -->
-      <div
-        class="bg-primary/60 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-white shadow-2xl flex items-start gap-4 max-w-sm justify-self-end w-full">
-        <div class="w-10 h-10 rounded-xl bg-solar flex items-center justify-center text-primary-dark shrink-0">
+      <div class="
+          bg-primary/60 
+          backdrop-blur-md 
+          border 
+          border-white/10 
+          rounded-2xl p-5 
+          text-white 
+          shadow-2xl 
+          flex 
+          items-start 
+          gap-4 
+          max-w-sm 
+          justify-self-end 
+          w-full
+          animate-float
+          animate-fade-in-up
+          delay-500
+        ">
+        <div class="
+            w-10 h-10 
+            rounded-xl 
+            bg-solar 
+            flex 
+            items-center 
+            justify-center 
+            text-primary-dark 
+            shrink-0
+          ">
           <mat-icon class="!w-5 !h-5 !text-[20px]">bolt</mat-icon>
         </div>
         <div>

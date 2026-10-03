@@ -21,5 +21,5 @@ export class Home {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  
+
 }
