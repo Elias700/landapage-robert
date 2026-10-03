@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
+
 
 @Component({
   selector: 'app-advantages',
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    RevealOnScrollDirective
   ],
   templateUrl: './advantages.html',
   styleUrl: './advantages.css',
