@@ -8,6 +8,7 @@ import { About } from './pages/about/about';
 import { Contact } from './pages/contact/contact';
 import { Footer } from './layout/footer/footer';
 import { OurWork } from './pages/our-work/our-work';
+import { WhatsappButton } from './components/whatsapp-button/whatsapp-button';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { OurWork } from './pages/our-work/our-work';
     About,
     Contact,
     Footer,
-    OurWork
+    OurWork,
+    WhatsappButton
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'
