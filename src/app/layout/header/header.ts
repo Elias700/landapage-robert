@@ -21,6 +21,7 @@ export class Header {
     { label: 'Início', href: '#inicio' },
     { label: 'Vantagens', href: '#vantagens' },
     { label: 'Como funciona', href: '#como-funciona' },
+    { label: 'Nosso trabalho', href: '#nosso-trabalho' },
     { label: 'Sobre', href: '#sobre' }
   ];
 
