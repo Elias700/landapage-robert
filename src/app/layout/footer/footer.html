@@ -1,10 +1,8 @@
 <footer class="bg-primary text-white pt-16 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-        <!-- Seção Superior do Footer -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-12">
 
-            <!-- Coluna 1: Logo e Marca -->
             <div class="md:col-span-5 space-y-4">
                 <div class="flex items-center gap-3">
                     <div
@@ -26,11 +24,10 @@
                     </span>
                 </div>
                 <p class="text-white/60 text-sm leading-relaxed max-w-sm">
-                    Energia solar com atendimento próximo, claro e feito para você.
+                    Energia solar com atendimento próximo, <br> claro e feito para você.
                 </p>
             </div>
 
-            <!-- Coluna 2: Navegação -->
             <div class="md:col-span-3 space-y-4">
                 <h4 class="text-xs font-semibold tracking-widest text-solar uppercase">
                     Navegue
@@ -39,8 +36,27 @@
                     <li>
                         <button 
                             type="button" 
-                            routerLink="/advantagens"
-                            class="text-white/70 hover:text-white transition-colors cursor-pointer
+                            routerLink="/" 
+                            fragment="home"
+                            class="
+                                text-white/70 
+                                hover:text-white 
+                                transition-colors 
+                                cursor-pointer
+                    ">
+                            Home
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                            type="button" 
+                            routerLink="/"
+                            fragment="advantages"
+                            class="
+                                text-white/70 
+                                hover:text-white 
+                                transition-colors 
+                                cursor-pointer
                         ">
                             Vantagens
                         </button>
@@ -48,33 +64,57 @@
                     <li>
                         <button 
                             type="button" 
-                            routerLink="/how-it-works"
-                            class="text-white/70 hover:text-white transition-colors cursor-pointer
-                        ">
-                            Como funciona
+                            routerLink="/" 
+                            fragment="about"
+                            class="
+                                text-white/70 
+                                hover:text-white 
+                                transition-colors 
+                                cursor-pointer
+                    ">
+                            Sobre Robert
                         </button>
                     </li>
                     <li>
                         <button 
                             type="button" 
-                            routerLink="/about"
-                            class="text-white/70 hover:text-white transition-colors cursor-pointer
+                            routerLink="/" 
+                            fragment="how-it-works"
+                            class="
+                                text-white/70 
+                                hover:text-white 
+                                transition-colors 
+                                cursor-pointer
                         ">
-                            Sobre Robert
+                            Como funciona
+                        </button>
+                    </li>
+                    
+                     <li>
+                        <button 
+                            type="button" 
+                            routerLink="/" 
+                            fragment="our-work"
+                            class="
+                                text-white/70 
+                                hover:text-white 
+                                transition-colors 
+                                cursor-pointer
+                    ">
+                            Nosso trabalho
                         </button>
                     </li>
                 </ul>
             </div>
 
-            <!-- Coluna 3: Fale Comigo -->
-            <div class="md:col-span-4 space-y-4">
+            <div class="md:col-span-4 lg:col-span-3 lg:col-start-10 md:pl-8 lg:pl-0 space-y-4">
                 <h4 class="text-xs font-semibold tracking-widest text-solar uppercase">
                     Fale comigo
                 </h4>
                 <div>
                     <button 
                         type="button" 
-                        
+                        (click)="openWhatsApp()"
                         class="
                             inline-flex 
                             items-center 
@@ -104,10 +144,8 @@
 
         </div>
 
-        <!-- Divisória Linha Suave -->
         <div class="w-full h-[1px] bg-white/10 mb-8"></div>
 
-        <!-- Seção Inferior: Copyright e Slogan -->
         <div 
             class="
                 flex 
