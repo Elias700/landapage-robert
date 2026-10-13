@@ -14,7 +14,8 @@ import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive
   styleUrl: './about.css',
 })
 export class About {
-  // profileImageUrl: string | null = null;
+  
   profileImageUrl = 'robert2.jpg';
+  
 }
 

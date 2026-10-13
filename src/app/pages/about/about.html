@@ -7,7 +7,7 @@
                 <div class="relative w-full max-w-md aspect-[4/5]">
 
                     <!-- Camada de Fundo Deslocada (Sombra/Efeito de Camada em Tom Verde Claro) -->
-                    <div
+                    <div 
                         class="
                             absolute 
                             -bottom-4 
@@ -16,12 +16,14 @@
                             h-full 
                             bg-emerald-50 
                             rounded-t-[160px] 
-                            rounded-b-3xl -z-10
-                    ">
+                            rounded-b-3xl 
+                            -z-10
+                        "
+                    >
                     </div>
 
-                    <!-- Moldura Principal em Arco com Fundo Verde-Petróleo -->
-                    <div
+                    <!-- Moldura Principal em Arco -->
+                    <div 
                         class="
                             relative 
                             w-full 
@@ -38,11 +40,12 @@
                             p-8 
                             border 
                             border-white/10
-                    ">
+                        "
+                    >
 
                         <img 
                             [src]="profileImageUrl" 
-                            alt="Robert Lazaro - Consultor de Energia Solar" 
+                            alt="Robert Lázaro - Consultor de Energia Solar" 
                             class="
                                 absolute 
                                 inset-0 
@@ -54,8 +57,9 @@
                                 hover:scale-110 
                                 transition-transform 
                                 duration-500
-                            "
+                            " 
                         />
+                        
                         <!-- Gradiente suave inferior para integrar a imagem -->
                         <div 
                             class="
@@ -63,15 +67,16 @@
                                 inset-0 
                                 bg-gradient-to-t 
                                 from-primary-dark/40 
-                                via-transparent to-transparent 
+                                via-transparent 
+                                to-transparent 
                                 pointer-events-none
-                        ">
-                        </div>   
+                            "
+                        ></div>   
 
                     </div>
 
                     <!-- Badge Flutuante: Consultoria Personalizada -->
-                    <div
+                    <div 
                         class="
                             absolute 
                             -bottom-4 
@@ -90,8 +95,9 @@
                             items-center 
                             gap-3 
                             border 
-                            border-white/20
-                    ">
+                            border-white/25
+                        "
+                    >
                         <mat-icon class="!w-6 !h-6 !text-[24px] text-primary-dark">
                             wb_sunny
                         </mat-icon>
@@ -118,7 +124,8 @@
                             tracking-wider 
                             text-text-muted 
                             uppercase
-                    ">
+                        "
+                    >
                         Atendimento de verdade
                     </span>
                 </div>
@@ -134,7 +141,8 @@
                         leading-[1.15] 
                         mb-6 
                         tracking-tight
-                ">
+                    "
+                >
                     Olá, eu sou 
                     <span class="italic font-serif font-medium text-solar">
                         Robert Lázaro.
@@ -150,7 +158,7 @@
                 <!-- Descrição - Parágrafo 2 -->
                 <p class="text-text-muted text-base sm:text-lg font-normal leading-relaxed mb-10">
                     Nossa missão é entender a sua necessidade, explicar cada etapa com total transparência 
-                    e caminhar ao seu lado rumo a uma energia  econômica e sustentável.
+                    e caminhar ao seu lado rumo a uma energia econômica e sustentável.
                 </p>
 
                 <!-- Divisória Linha Suave -->
