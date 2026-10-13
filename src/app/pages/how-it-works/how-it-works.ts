@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { signal } from '@angular/core';
  import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
 
 @Component({
