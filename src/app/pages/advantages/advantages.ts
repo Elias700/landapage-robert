@@ -12,7 +12,6 @@ import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive
     RevealOnScrollDirective
   ],
   templateUrl: './advantages.html',
-  styleUrl: './advantages.css',
 })
 export class Advantages {
 
