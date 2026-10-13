@@ -1,22 +1,25 @@
-<section id="contato" class="py-20 md:py-28 bg-primary-dark text-white relative overflow-hidden">
+<section 
+    id="contato" 
+    class="py-20 md:py-28 bg-primary-dark text-white relative overflow-hidden" 
+    appRevealOnScroll
+>
 
-    <!-- Padrão de Fundo de Pontos Sutil -->
-    <div class="
-      absolute 
-      inset-0 
-      opacity-10 
-      bg-[radial-gradient(#ffffff_1px,transparent_1px)] 
-      [background-size:20px_20px] 
-      pointer-events-none
-    "></div>
+    <div
+        class="
+            absolute 
+            inset-0 
+            opacity-10 
+            bg-[radial-gradient(#ffffff_1px,transparent_1px)] 
+            [background-size:20px_20px] pointer-events-none
+        "
+    >
+    </div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-            <!-- Coluna Esquerda: Texto e Garantia -->
-            <div class="lg:col-span-6">
+            <div class="lg:col-span-6" appRevealOnScroll>
 
-                <!-- Tag / Badge Superior -->
                 <div class="inline-flex items-center gap-2 mb-4">
                     <span class="w-8 h-[2px] bg-solar"></span>
                     <span class="text-xs md:text-sm font-semibold tracking-wider text-solar uppercase">
@@ -24,42 +27,43 @@
                     </span>
                 </div>
 
-                <!-- Título Principal -->
-                <h2 class="
-                    text-3xl 
-                    sm:text-4xl 
-                    lg:text-5xl 
-                    font-normal 
-                    text-white 
-                    leading-[1.15] 
-                    mb-6 
-                    tracking-tight
-                ">
+                <h2 
+                    class="
+                        text-3xl 
+                        sm:text-4xl 
+                        lg:text-5xl 
+                        font-normal 
+                        text-white 
+                        leading-[1.15] 
+                        mb-6 
+                        tracking-tight
+                    "
+                >
                     Seu projeto <br class="hidden sm:inline" />
                     começa com uma <br />
                     <span class="italic font-serif font-medium text-solar">boa conversa.</span>
                 </h2>
 
-                <!-- Subtítulo -->
                 <p class="text-white/70 text-base sm:text-lg font-normal leading-relaxed mb-10 max-w-lg">
                     Envie seus dados e conte um pouco sobre o seu consumo. Robert entra em contato
                     para fazer uma análise inicial sem compromisso.
                 </p>
 
-                <!-- Garantia / Selo sem compromisso -->
                 <div class="flex items-start gap-4">
-                    <div class="
-                        w-10 h-10 
-                        rounded-full 
-                        bg-solar 
-                        text-primary-dark 
-                        flex 
-                        items-center 
-                        justify-center 
-                        shrink-0 
-                        mt-1 
-                        shadow-md
-                    ">
+                    <div
+                        class="
+                            w-10 h-10 
+                            rounded-full 
+                            bg-solar 
+                            text-primary-dark 
+                            flex 
+                            items-center 
+                            justify-center 
+                            shrink-0 
+                            mt-1 
+                            shadow-md
+                        "
+                    >
                         <mat-icon class="!w-5 !h-5 !text-[20px] font-bold">check</mat-icon>
                     </div>
                     <div>
@@ -72,10 +76,12 @@
 
             </div>
 
-            <!-- Coluna Direita: Card do Formulário -->
-            <div class="lg:col-span-6 flex justify-center lg:justify-end">
-
-                <div 
+            <div 
+                class="lg:col-span-6 flex justify-center lg:justify-end" 
+                appRevealOnScroll 
+                [delay]="200"
+            >
+                <div
                     class="
                         w-full 
                         max-w-xl 
@@ -90,100 +96,110 @@
                     "
                 >
 
+                    <div class="mb-8 pb-6 border-b border-gray-100 flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary tracking-tight">
+                                Solicite sua Análise
+                            </h3>
+                            <p class="text-xs text-text-muted mt-0.5">
+                                Preencha os campos abaixo para iniciar
+                            </p>
+                        </div>
+                        <div 
+                            class="
+                                w-10 h-10 
+                                rounded-2xl 
+                                bg-solar/10 
+                                flex 
+                                items-center 
+                                justify-center 
+                                text-solar-dark
+                            "
+                        >
+                            <mat-icon class="!w-5 !h-5 !text-[20px]">bolt</mat-icon>
+                        </div>
+                    </div>
+
+
                     <form 
                         [formGroup]="contactForm" 
                         (ngSubmit)="onSubmit()" 
-                        class="
-                            flex 
-                            flex-col 
-                            gap-4
-                        "
+                        class="flex flex-col gap-4"
                     >
 
-                        <!-- Campo 1: Nome -->
                         <mat-form-field appearance="outline" class="w-full">
-                            <mat-label>Como podemos chamar você?</mat-label>
+                            <mat-label>Seu nome</mat-label>
+                            <mat-icon matPrefix
+                                class="!w-5 !h-5 !text-[20px] mr-2 text-gray-400">person_outline</mat-icon>
                             <input 
                                 matInput 
                                 formControlName="name" 
-                                placeholder="Seu nome completo" 
+                                placeholder="Nome completo" 
                             />
                             <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
-                                Por favor, informe seu nome.
+                                Informe seu nome.
                             </mat-error>
                             <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')">
-                                O nome deve ter no mínimo 3 caracteres.
+                                Mínimo de 3 caracteres.
                             </mat-error>
                         </mat-form-field>
 
-                        <!-- Grid de 2 Colunas: WhatsApp e Cidade -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                            <!-- WhatsApp -->
-                            <mat-form-field appearance="outline" class="w-full">
-                                <mat-label>WhatsApp</mat-label>
-                                <input 
-                                    matInput 
-                                    formControlName="whatsapp" 
-                                    placeholder="(00) 00000-0000" 
-                                />
-                                <mat-error *ngIf="contactForm.get('whatsapp')?.hasError('required')">
-                                    Informe o seu WhatsApp.
-                                </mat-error>
-                            </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>Cidade</mat-label>
+                            <mat-icon matPrefix
+                                class="!w-5 !h-5 !text-[20px] mr-2 text-gray-400">location_city</mat-icon>
+                            <input 
+                                matInput 
+                                formControlName="city" 
+                                placeholder="Sua cidade" 
+                            />
+                            <mat-error *ngIf="contactForm.get('city')?.hasError('required')">
+                                Informe sua cidade.
+                            </mat-error>
+                        </mat-form-field>
 
-                            <!-- Cidade -->
-                            <mat-form-field appearance="outline" class="w-full">
-                                <mat-label>Cidade</mat-label>
-                                <input 
-                                    matInput 
-                                    formControlName="city" 
-                                    placeholder="Sua cidade" 
-                                />
-                                <mat-error *ngIf="contactForm.get('city')?.hasError('required')">
-                                    Informe sua cidade.
-                                </mat-error>
-                            </mat-form-field>
+                       
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>Onde deseja instalar?</mat-label>
+                            <mat-icon matPrefix class="!w-5 !h-5 !text-[20px] mr-2 text-gray-400">
+                                home_work
+                            </mat-icon>
+                            <mat-select formControlName="installationType">
+                                <mat-option value="Residência">Residência</mat-option>
+                                <mat-option value="Empresa / Comércio">Empresa / Comércio</mat-option>
+                                <mat-option value="Agronegócio / Zona Rural">Agronegócio / Zona Rural</mat-option>
+                                <mat-option value="Outro">Outro</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="contactForm.get('installationType')?.hasError('required')">
+                                Selecione o local.
+                            </mat-error>
+                        </mat-form-field>
 
-                        </div>
+          
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>Valor médio da conta</mat-label>
+                            <span 
+                                matPrefix 
+                                class="font-semibold text-gray-500 pl-1 pr-1.5 flex items-center"
+                            >
+                                R$&nbsp;
+                            </span>
+                            <input 
+                                matInput 
+                                type="number" 
+                                formControlName="monthlyBill" 
+                                placeholder="180,00" min="1" 
+                            />
+                            <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('required')">
+                                Informe o valor.
+                            </mat-error>
+                            <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('min')">
+                                O valor deve ser maior que zero.
+                            </mat-error>
+                        </mat-form-field>
 
-                        <!-- Grid de 2 Colunas: Onde instalar e Valor Médio da Conta -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                            <!-- Campo: Onde deseja instalar? -->
-                            <mat-form-field appearance="outline" class="w-full">
-                                <mat-label>Onde deseja instalar?</mat-label>
-                                <mat-select formControlName="installationType">
-                                    <mat-option value="Residência">Residência</mat-option>
-                                    <mat-option value="Empresa / Comércio">Empresa / Comércio</mat-option>
-                                    <mat-option value="Agronegócio / Zona Rural">Agronegócio / Zona Rural</mat-option>
-                                    <mat-option value="Outro">Outro</mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="contactForm.get('installationType')?.hasError('required')">
-                                    Selecione o local.
-                                </mat-error>
-                            </mat-form-field>
-
-                            <!-- Campo NOVO: Valor Médio da Conta de Luz (com R$) -->
-                            <mat-form-field appearance="outline" class="w-full">
-                                <mat-label>Valor médio da conta</mat-label>
-                                <span matPrefix class="font-semibold text-gray-600 pl-1 pr-1.5">
-                                    R$&nbsp;
-                                </span>
-                                <input 
-                                    matInput 
-                                    type="number" 
-                                    formControlName="monthlyBill" 
-                                    placeholder="500,00" 
-                                />
-                                <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('required')">
-                                    Informe o valor da conta.
-                                </mat-error>
-                            </mat-form-field>
-
-                        </div>
-
-                        <!-- Botão Submit CTA -->
+                      
                         <button 
                             type="submit" 
                             class="
@@ -194,8 +210,8 @@
                                 text-primary-dark 
                                 font-bold 
                                 text-base 
-                                rounded-xl 
-                                shadow-lg 
+                                rounded-2xl 
+                                shadow-md 
                                 hover:shadow-xl 
                                 transition-all 
                                 duration-300 
@@ -203,12 +219,13 @@
                                 items-center 
                                 justify-center 
                                 gap-2 
-                                group mt-2
+                                group 
+                                mt-2 
                                 cursor-pointer
                             "
                         >
                             <span>Solicitar análise gratuita</span>
-                            <mat-icon 
+                            <mat-icon
                                 class="
                                     !w-5 !h-5 
                                     !text-[20px] 
@@ -224,7 +241,6 @@
                     </form>
 
                 </div>
-
             </div>
 
         </div>
