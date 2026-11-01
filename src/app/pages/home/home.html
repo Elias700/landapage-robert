@@ -13,17 +13,20 @@
 >
 
   <div class="absolute inset-0 z-0">
-    <img 
-      src="https://images.pexels.com/photos/9875445/pexels-photo-9875445.jpeg" 
-      alt="Painéis solares fotovoltaicos"
-      class="
-        w-full 
-        h-full 
-        object-cover 
-        object-center 
-        opacity-30 
-        select-none
-    " />
+    <video
+      #homeBackgroundVideo
+      class="home-background-video absolute inset-0 h-full w-full object-cover object-center opacity-30"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      (canplay)="startBackgroundVideo(homeBackgroundVideo)"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <source src="/video-home.mp4" type="video/mp4" />
+    </video>
 
     <div class="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/80 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/60"></div>

@@ -13,6 +13,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Home {
 
+  startBackgroundVideo(video: HTMLVideoElement): void {
+    video.muted = true;
+    void video.play().catch(() => {
+      // O navegador pode bloquear a reprodução automática por política própria.
+    });
+  }
+
   scrollToSection(href: string): void {
     const element = document.querySelector(href);
     if (element) {
