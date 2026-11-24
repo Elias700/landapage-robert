@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild, ViewChildren, QueryList, signal, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild, ViewChildren, QueryList, signal, AfterViewInit, OnDestroy, HostListener, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
 import { WorkItem } from './workItem.model';
@@ -16,6 +16,7 @@ import { WorkItem } from './workItem.model';
   styleUrl: './our-work.css',
 })
 export class OurWork implements AfterViewInit, OnDestroy {
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   
   // Referência para o container principal do carrossel (para controle de scroll)
   @ViewChild('carouselContainer') carouselContainer!: ElementRef<HTMLDivElement>;
@@ -43,6 +44,8 @@ export class OurWork implements AfterViewInit, OnDestroy {
   canScrollRight = signal<boolean>(true);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') return;
+
     // Aguarda a renderização completa do DOM para calcular o espaço do scroll inicial
     setTimeout(() => {
       this.checkScrollPosition();
