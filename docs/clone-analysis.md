@@ -98,6 +98,28 @@ A preferência tipográfica para trocar a fonte serifada dos destaques continua 
 
 ## Implementação concluída
 
+## Revisão visual solicitada
+
+A primeira versão implementava principalmente SEO, privacidade, SSR e acessibilidade. Ela ainda não traduzia a linguagem visual mais marcante observada no clone. Na comparação direta, o clone apresenta hero cinematográfico com mídia ocupando o viewport, navegação sobreposta, tipografia editorial em escala grande, contraste entre áreas claras e escuras, revelação por máscara e galeria horizontal presa à rolagem. A landing Robert Solar anterior conservava o hero em gradiente e os cards convencionais; por isso, a mudança percebida era pequena.
+
+O ajuste visual aplica esses padrões de movimento e composição com a identidade existente da Robert Solar, sem reutilizar os textos, fotos, marca ou layout do Echo Camp:
+
+- Hero fotográfico de tela cheia com título editorial em branco e dourado, entrada escalonada, máscara de imagem e sombra vinculada à rolagem.
+- Cabeçalho compacto em vidro fosco sobreposto ao hero.
+- Vantagens com fotos reais das instalações, cards escuros, tipografia ampliada e zoom/elevação controlados no hover.
+- Processo sobre fundo verde escuro com grade fina, contraste de escala e transição curta entre etapas.
+- Galeria fotográfica escura com pin e deslocamento horizontal em desktop; setas continuam operáveis e touch mantém o carrossel horizontal nativo.
+- Retrato com entrada por máscara e reveals de seção com deslocamentos moderados.
+
+O serviço GSAP/ScrollTrigger mantém o HTML visível antes da inicialização, aguarda o DOM no cliente, limpa os gatilhos ao sair da rota e desativa movimento com `prefers-reduced-motion`. Lenis e a galeria pinada ficam restritos a ponteiro fino/desktop. O caminho móvel preserva swipe e não depende de animação para acessar conteúdo.
+
+### Verificação visual
+
+- A captura desktop confirmou o novo hero, contraste tipográfico e fotos. A revisão encontrou o título quebrando a palavra “em” sozinha, o cabeçalho ainda ocupando uma faixa separada e o cartão do hero cortado no limite inferior; o CSS foi ajustado para ampliar o bloco do título, forçar o cabeçalho flutuante e encaixar o cartão na dobra.
+- As sessões Vantagens, Processo e Nosso Trabalho foram verificadas visualmente na revisão anterior; o pin da galeria e o fallback sem movimento também foram testados.
+- O build atual termina e prerenderiza 2 rotas. Continua o aviso de orçamento do bundle inicial (667,35 kB frente ao limite de 500 kB); ele não foi ocultado.
+
+
 - O caminho real do clone, `src/app/clone/**`, está excluído da compilação Angular; build e arquivos públicos não referenciam nem copiam a pasta de estudo.
 - SSR e prerender publicam `/` e `/privacidade`; APIs do navegador e animações são iniciadas apenas no cliente, e as diretivas de reveal deixam o conteúdo visível no HTML servido.
 - GSAP/ScrollTrigger e Lenis implementam reveals, parallax leve no desktop e rolagem suave em ponteiro fino. As bibliotecas são carregadas sob demanda, liberadas ao sair da landing e desativadas com `prefers-reduced-motion`.

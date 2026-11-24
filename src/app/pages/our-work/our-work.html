@@ -1,20 +1,21 @@
-<section 
+<section
   id="nosso-trabalho" 
+  data-gsap-horizontal-section
   class="
+    rs-gallery-section
     py-16 
     md:py-24 
     bg-white 
     text-text 
     relative 
     overflow-hidden
-  " 
-    appRevealOnScroll
+  "
 >
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+  <div class="rs-work-inner max-w-7xl mx-auto px-6 lg:px-12">
 
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+    <div class="rs-gallery-header flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
 
-      <div class="max-w-2xl">
+      <div class="rs-gallery-heading max-w-2xl" data-gsap-reveal>
         <div class="inline-flex items-center gap-2 mb-3">
           <span class="w-8 h-[2px] bg-solar"></span>
           <span class="text-xs md:text-sm font-semibold tracking-wider text-text-muted uppercase">
@@ -95,13 +96,15 @@
     </div>
 
     <!-- Carrossel -->
-    <div 
+    <div
       #carouselContainer 
+      data-gsap-horizontal-track
       role="region"
       aria-label="Projetos de energia solar"
       tabindex="0"
+      (keydown)="onCarouselKeydown($event)"
       (scroll)="checkScrollPosition()"
-      class="
+      class="rs-gallery-track
         flex 
         gap-4 
         sm:gap-6 
@@ -114,11 +117,11 @@
         scroll-smooth
       "
     >
-      @for (item of workItems; track item.id) {
+      @for (item of workItems; track item.id; let idx = $index) {
       <div
         role="group"
         [attr.aria-label]="'Projeto ' + item.id + ' de ' + workItems.length"
-        class="
+        class="rs-gallery-card
           w-full 
           sm:w-[380px] 
           md:w-[460px] 
@@ -139,6 +142,7 @@
           flex-shrink-0
         "
       >
+        <span class="rs-gallery-index" aria-hidden="true">{{ idx + 1 | number:'2.0' }} <span>/ 08</span></span>
         @if (item.type === 'video') {
         <video 
           #videoElement 

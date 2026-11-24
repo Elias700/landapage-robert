@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild, signal, AfterViewInit, OnDestroy, HostListener, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
 import { WorkItem } from './workItem.model';
 
 @Component({
@@ -9,14 +8,22 @@ import { WorkItem } from './workItem.model';
   standalone: true,
   imports: [
     CommonModule,
-    MatIconModule,
-    RevealOnScrollDirective
+    MatIconModule
   ],
   templateUrl: './our-work.html',
   styleUrl: './our-work.css',
 })
 export class OurWork implements AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private galleryIndex = 0;
+  private scrollFrame = 0;
+  private readonly onWindowScroll = (): void => {
+    if (this.scrollFrame) return;
+    this.scrollFrame = requestAnimationFrame(() => {
+      this.scrollFrame = 0;
+      this.checkScrollPosition();
+    });
+  };
   
   // Referência para o container principal do carrossel (para controle de scroll)
   @ViewChild('carouselContainer') carouselContainer!: ElementRef<HTMLDivElement>;
@@ -46,10 +53,15 @@ export class OurWork implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.checkScrollPosition();
     }, 100);
+    window.addEventListener('scroll', this.onWindowScroll, { passive: true });
 
   }
 
   ngOnDestroy(): void {
+    if (this.isBrowser) {
+      window.removeEventListener('scroll', this.onWindowScroll);
+      if (this.scrollFrame) cancelAnimationFrame(this.scrollFrame);
+    }
   }
 
   // Recalcula o estado das setas sempre que a tela for redimensionada
@@ -65,6 +77,17 @@ export class OurWork implements AfterViewInit, OnDestroy {
   checkScrollPosition(): void {
     if (!this.carouselContainer) return;
     const el = this.carouselContainer.nativeElement;
+
+    if (this.isPinnedGallery()) {
+      const distance = Math.max(0, el.scrollWidth - window.innerWidth);
+      const transform = getComputedStyle(el).transform;
+      const translateX = transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m41;
+      const progress = distance > 0 ? Math.min(1, Math.max(0, -translateX / distance)) : 0;
+      this.galleryIndex = Math.round(progress * (this.workItems.length - 1));
+      this.canScrollLeft.set(progress > 0.01);
+      this.canScrollRight.set(progress < 0.99);
+      return;
+    }
     
     const scrollLeft = el.scrollLeft;
     const maxScrollLeft = el.scrollWidth - el.clientWidth;
@@ -98,6 +121,10 @@ export class OurWork implements AfterViewInit, OnDestroy {
 
   // Executa a rolagem para a esquerda
   scrollLeft(): void {
+    if (this.isPinnedGallery()) {
+      this.navigatePinnedGallery(-1);
+      return;
+    }
     if (this.carouselContainer) {
       this.carouselContainer.nativeElement.scrollBy({
         left: -this.getStepWidth(),
@@ -110,6 +137,10 @@ export class OurWork implements AfterViewInit, OnDestroy {
 
   // Executa a rolagem para a direita
   scrollRight(): void {
+    if (this.isPinnedGallery()) {
+      this.navigatePinnedGallery(1);
+      return;
+    }
     if (this.carouselContainer) {
       this.carouselContainer.nativeElement.scrollBy({
         left: this.getStepWidth(),
@@ -117,5 +148,32 @@ export class OurWork implements AfterViewInit, OnDestroy {
       });
       setTimeout(() => this.checkScrollPosition(), 300);
     }
+  }
+
+  onCarouselKeydown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.scrollLeft();
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.scrollRight();
+    }
+  }
+
+  private isPinnedGallery(): boolean {
+    return this.isBrowser && document.documentElement.classList.contains('rs-motion-ready') &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      window.matchMedia('(min-width: 1100px) and (pointer: fine)').matches;
+  }
+
+  private navigatePinnedGallery(direction: -1 | 1): void {
+    if (!this.carouselContainer) return;
+    const nextIndex = Math.min(this.workItems.length - 1, Math.max(0, this.galleryIndex + direction));
+    const section = this.carouselContainer.nativeElement.closest<HTMLElement>('[data-gsap-horizontal-section]');
+    if (!section) return;
+    const distance = Math.max(0, this.carouselContainer.nativeElement.scrollWidth - window.innerWidth);
+    const pinStart = Number(section.dataset['pinStart'] ?? section.offsetTop);
+    const nextTop = pinStart + distance * (nextIndex / (this.workItems.length - 1));
+    window.scrollTo({ top: nextTop, behavior: 'smooth' });
   }
 }

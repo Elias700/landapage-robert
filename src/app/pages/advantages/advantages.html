@@ -1,7 +1,7 @@
-<section id="vantagens" class="py-20 md:py-28 bg-background-alt relative overflow-hidden">
+<section id="vantagens" class="rs-editorial-grid rs-advantages-section py-20 md:py-28 bg-background-alt relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 md:mb-20" appRevealOnScroll>
+        <div class="rs-section-heading grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 md:mb-20" appRevealOnScroll>
 
             <div class="lg:col-span-7">
                 <div class="inline-flex items-center gap-2 mb-4">
@@ -48,9 +48,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @for (item of advantages; track item.number; let idx = $index) {
                 <div
-                    appRevealOnScroll
-                    [delay]="idx * 100"
-                    class="
+                    class="rs-advantage-card
                         bg-white 
                         rounded-3xl 
                         p-8 
@@ -66,9 +64,14 @@
                         justify-between 
                         group
                     "
+                    [attr.data-gsap-reveal]="true"
+                    [attr.data-gsap-delay]="idx * 0.14"
                 >
 
-                    <div>
+                    <img class="rs-advantage-photo" [src]="['/img-placa-solar2-600.jpeg', '/img-placa-solar4-600.jpeg', '/img-placa-solar5-600.jpeg'][idx]" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+                    <div class="rs-advantage-shade" aria-hidden="true"></div>
+
+                    <div class="rs-advantage-content">
                     
                         <div class="flex items-center justify-between mb-8">
                             <div 
@@ -89,7 +92,7 @@
                                 <mat-icon class="!w-6 !h-6 !text-[24px]">{{ item.icon }}</mat-icon>
                             </div>
 
-                            <span class="text-sm font-semibold text-text-muted/40 tracking-wider">
+                            <span class="rs-advantage-number text-sm font-semibold text-text-muted/40 tracking-wider">
                                 {{ item.number }}
                             </span>
                         </div>
@@ -116,10 +119,9 @@
                         </p>
                     </div>
 
-                    <a 
-                        href="#contato" 
+                    <a href="#contato"
                         (click)="scrollToContact(); $event.preventDefault()"
-                        class="
+                        class="rs-advantage-link
                             inline-flex 
                             items-center 
                             gap-2 
@@ -129,7 +131,7 @@
                             group-hover:text-solar-dark 
                             transition-colors 
                             cursor-pointer
-                        "
+                    "
                     >
                         <span>Quero saber mais</span>
                         <mat-icon 

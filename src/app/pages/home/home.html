@@ -1,6 +1,6 @@
 <section 
   id="inicio" 
-  class="
+  class="rs-hero
     relative 
     min-h-[calc(100vh-80px)] 
     flex 
@@ -8,11 +8,10 @@
     justify-center 
     overflow-hidden 
     bg-primary-dark
-    pt-20 md:pt-24
   "
 >
 
-  <div class="absolute inset-0 z-0" data-gsap-parallax>
+  <div class="rs-hero-media absolute inset-0 z-0" data-gsap-parallax>
     <img
       src="/img-placa-solar1.jpeg"
       alt=""
@@ -40,11 +39,12 @@
 
     <div class="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/80 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/60"></div>
+    <div class="rs-hero-scroll-shade absolute inset-0 pointer-events-none" data-gsap-hero-shade></div>
   </div>
 
 
   <div 
-    class="
+    class="rs-hero-content
       relative 
       z-10 
       max-w-7xl 
@@ -61,9 +61,9 @@
     "
   >
 
-    <div class="max-w-2xl my-auto pt-4 animate-fade-up-immediate" data-gsap-reveal>
+    <div class="max-w-4xl my-auto pt-4" data-gsap-hero>
 
-      <div class="inline-flex items-center gap-2 mb-6">
+      <div class="inline-flex items-center gap-2 mb-6" data-gsap-sequence>
         <span class="w-8 h-[2px] bg-solar"></span>
         <mat-icon class="!w-4 !h-4 !text-[16px] text-solar">wb_sunny</mat-icon>
         <span class="text-xs md:text-sm font-semibold tracking-wider text-solar uppercase">
@@ -71,7 +71,7 @@
         </span>
       </div>
 
-      <h1 class="
+      <h1 data-gsap-sequence class="rs-hero-title
           text-4xl 
           sm:text-5xl 
           lg:text-6xl 
@@ -83,7 +83,7 @@
         ">
         Transforme luz do sol em
         <span
-          class="
+          class="rs-hero-accent
             italic 
             font-serif 
             font-medium 
@@ -98,7 +98,7 @@
         </span>
       </h1>
 
-      <p class="
+      <p data-gsap-sequence class="
           text-base 
           sm:text-lg 
           text-white/80 
@@ -111,7 +111,7 @@
         com uma consultoria próxima e transparente.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4" data-gsap-sequence>
         
         <a 
           href="#contato" 
@@ -169,7 +169,7 @@
 
       <div class="hidden md:block"></div>
 
-      <a 
+      <a data-gsap-sequence
         href="#vantagens" 
         (click)="scrollToSection('#vantagens'); $event.preventDefault()" 
         class="
@@ -204,7 +204,7 @@
         </div>
       </a>
 
-      <div 
+      <div data-gsap-sequence
         class="
           bg-primary/60 
           backdrop-blur-md 

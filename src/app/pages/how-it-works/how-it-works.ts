@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class HowItWorks {
 
   activeStepIndex = signal<number>(0);
+  stepChanging = signal<boolean>(false);
 
   steps: Step[] = [
     {
@@ -51,7 +52,10 @@ export class HowItWorks {
   ];
 
   selectStep(index: number): void {
+    if (this.activeStepIndex() === index) return;
+    this.stepChanging.set(true);
     this.activeStepIndex.set(index);
+    setTimeout(() => this.stepChanging.set(false), 90);
   }
 
   onTabKeydown(event: KeyboardEvent, currentIndex: number): void {

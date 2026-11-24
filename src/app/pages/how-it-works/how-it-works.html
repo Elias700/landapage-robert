@@ -1,4 +1,4 @@
-<section id="como-funciona" class="py-20 md:py-28 bg-primary-dark relative overflow-hidden text-white">
+<section id="como-funciona" class="rs-editorial-grid rs-process-section py-20 md:py-28 bg-primary-dark relative overflow-hidden text-white">
 
     
     <div
@@ -155,7 +155,9 @@
                     role="tabpanel"
                     [id]="'how-panel-' + activeStepIndex()"
                     [attr.aria-labelledby]="'how-tab-' + activeStepIndex()"
-                    class="
+                    [attr.data-step-number]="activeStep.number"
+                    [class.rs-step-changing]="stepChanging()"
+                    class="rs-step-panel
                         relative 
                         w-full 
                         max-w-lg 
