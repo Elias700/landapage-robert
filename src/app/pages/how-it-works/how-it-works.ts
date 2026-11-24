@@ -54,6 +54,19 @@ export class HowItWorks {
     this.activeStepIndex.set(index);
   }
 
+  onTabKeydown(event: KeyboardEvent, currentIndex: number): void {
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % this.steps.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + this.steps.length) % this.steps.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = this.steps.length - 1;
+    else return;
+
+    event.preventDefault();
+    this.selectStep(nextIndex);
+    document.getElementById(`how-tab-${nextIndex}`)?.focus();
+  }
+
   get activeStep(): Step {
     return this.steps[this.activeStepIndex()];
   }

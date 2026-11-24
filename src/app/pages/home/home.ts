@@ -14,6 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
 export class Home {
 
   startBackgroundVideo(video: HTMLVideoElement): void {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(min-width: 768px) and (pointer: fine)').matches) {
+      video.pause();
+      return;
+    }
     video.muted = true;
     void video.play().catch(() => {
       // O navegador pode bloquear a reprodução automática por política própria.

@@ -46,7 +46,7 @@
         </a>
 
         <!-- Menu Desktop -->
-        <nav class="hidden md:flex items-center gap-8">
+        <nav class="hidden lg:flex items-center gap-8">
             @for (item of navItems; track item.label) {
             <a 
                 [href]="item.href" 
@@ -82,14 +82,16 @@
         <button 
             type="button" 
             (click)="toggleMobileMenu()"
+            aria-controls="mobile-navigation"
+            [attr.aria-expanded]="isMobileMenuOpen()"
             class="
-                md:hidden 
+                lg:hidden
                 text-primary 
                 p-2 
                 focus:outline-none 
                 cursor-pointer
             " 
-            aria-label="Abrir Menu"
+            [attr.aria-label]="isMobileMenuOpen() ? 'Fechar menu' : 'Abrir menu'"
         >
             <mat-icon class="!w-7 !h-7 !text-[28px]">
                 {{ isMobileMenuOpen() ? 'close' : 'menu' }}
@@ -100,8 +102,10 @@
     <!-- Menu Responsivo Mobile -->
     @if (isMobileMenuOpen()) {
     <div 
+        id="mobile-navigation"
+        (keydown)="trapMenuTab($event)"
         class="
-            md:hidden 
+            lg:hidden
             bg-background 
             border-t 
             border-border 

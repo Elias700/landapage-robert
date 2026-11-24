@@ -47,10 +47,16 @@
                 </p>
 
                 <!-- Menu de Abas / Lista das Etapas -->
-                <div class="space-y-2 border-t border-white/10 pt-4">
+                <div class="space-y-2 border-t border-white/10 pt-4" role="tablist" aria-label="Etapas do projeto" aria-orientation="vertical">
                     @for (step of steps; track step.id; let index = $index) {
                     <button 
                         type="button" 
+                        role="tab"
+                        [id]="'how-tab-' + index"
+                        [attr.aria-controls]="'how-panel-' + index"
+                        [attr.aria-selected]="activeStepIndex() === index"
+                        [attr.tabindex]="activeStepIndex() === index ? 0 : -1"
+                        (keydown)="onTabKeydown($event, index)"
                         (click)="selectStep(index)" 
                         [class.bg-white/10]="activeStepIndex() === index"
                         [class.border-solar]="activeStepIndex() === index" 
@@ -114,6 +120,7 @@
             >
 
                 <div
+                    data-gsap-reveal
                     class="
                         absolute 
                         -top-12 
@@ -144,7 +151,10 @@
                 >
                 </div>
 
-                <div 
+                <div
+                    role="tabpanel"
+                    [id]="'how-panel-' + activeStepIndex()"
+                    [attr.aria-labelledby]="'how-tab-' + activeStepIndex()"
                     class="
                         relative 
                         w-full 

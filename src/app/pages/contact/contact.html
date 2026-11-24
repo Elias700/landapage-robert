@@ -67,7 +67,7 @@
                         <mat-icon class="!w-5 !h-5 !text-[20px] font-bold">check</mat-icon>
                     </div>
                     <div>
-                        <h4 class="text-white font-semibold text-base mb-0.5">Sem compromisso.</h4>
+                        <p class="text-white font-semibold text-base mb-0.5">Sem compromisso.</p>
                         <p class="text-white/60 text-sm">
                             Seus dados serão usados apenas para este atendimento.
                         </p>
@@ -187,17 +187,30 @@
                             </span>
                             <input 
                                 matInput 
-                                type="number" 
+                                type="text"
+                                inputmode="numeric"
                                 formControlName="monthlyBill" 
-                                placeholder="180,00" min="1" 
+                                placeholder="180,00"
+                                (input)="formatCurrencyInput($event)"
                             />
                             <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('required')">
                                 Informe o valor.
+                            </mat-error>
+                            <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('pattern')">
+                                O valor deve ser maior que zero.
                             </mat-error>
                             <mat-error *ngIf="contactForm.get('monthlyBill')?.hasError('min')">
                                 O valor deve ser maior que zero.
                             </mat-error>
                         </mat-form-field>
+
+                        <label class="flex items-start gap-3 text-sm leading-6 text-gray-700">
+                            <input type="checkbox" formControlName="privacyConsent" class="mt-1 h-5 w-5 shrink-0 accent-[#153B3D]" />
+                            <span>Autorizo o uso dos dados informados para responder à minha solicitação. Li a <a routerLink="/privacidade" class="font-semibold text-primary underline underline-offset-2">Política de Privacidade</a>.</span>
+                        </label>
+                        <p *ngIf="isSubmitted && contactForm.get('privacyConsent')?.invalid" class="text-sm text-red-700" role="alert">
+                            É necessário autorizar o uso dos dados para continuar.
+                        </p>
 
                       
                         <button 

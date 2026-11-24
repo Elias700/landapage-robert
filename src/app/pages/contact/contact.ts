@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
 
 
@@ -22,6 +23,7 @@ import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    RouterLink,
     RevealOnScrollDirective
   ],
   templateUrl: './contact.html',
@@ -38,7 +40,8 @@ export class Contact {
     name: ['', [Validators.required, Validators.minLength(3)]],
     city: ['', [Validators.required]],
     installationType: ['', [Validators.required]],
-    monthlyBill: ['', [Validators.required, Validators.min(1)]]
+    monthlyBill: ['', [Validators.required, Validators.pattern(/^(?!0,00$)\d{1,3}(?:\.\d{3})*,\d{2}$/)]],
+    privacyConsent: [false, [Validators.requiredTrue]],
   });
 
   isSubmitted = false;
@@ -66,8 +69,26 @@ export class Contact {
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
       // Reseta o formulário após o envio bem-sucedido
-      this.contactForm.reset();
+      this.contactForm.reset({ name: '', city: '', installationType: '', monthlyBill: '', privacyConsent: false });
       this.isSubmitted = false;
     }
+  }
+
+  formatCurrencyInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const digits = input.value.replace(/\D/g, '').slice(0, 10);
+    if (!digits) {
+      input.value = '';
+      this.contactForm.get('monthlyBill')?.setValue('');
+      return;
+    }
+
+    const amount = Number(digits) / 100;
+    const formatted = new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+    input.value = formatted;
+    this.contactForm.get('monthlyBill')?.setValue(formatted);
   }
 }

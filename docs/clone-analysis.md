@@ -90,16 +90,39 @@ O HTML e os bundles apontam para um site Next.js/React. O runtime dos bundles ex
 | Footer | Entrada leve das colunas, links com sublinhado/contraste/foco evidentes. Marquee fica como opção, mas não é padrão observado no clone. |
 | WhatsApp flutuante | Entrada depois do Hero, sem pulso constante; validar posição em mobile para não cobrir campos/CTA. |
 
-## Decisões e dados que dependem de você
+## Decisões confirmadas e escopo atualizado
 
-1. Posso trocar a descrição de Economia pela sugestão “Produza a própria energia e fique menos exposto aos aumentos da tarifa.”?
-2. Quais cidades/regiões o Robert atende?
-3. Há números confirmados para contadores (instalações, kWp instalados ou anos de atuação)? Se não, não usarei contadores.
-4. Há depoimentos reais de clientes que você queira incluir?
-5. Posso adicionar SSR e prerender da rota `/`, caso você queira essa melhoria? Hoje não há SSR.
+O responsável aprovou a nova frase do card Economia: “Produza a própria energia e fique menos exposto aos aumentos da tarifa.” A área de atendimento informada foi “Salvador, Bahia e regiões”; os metadados usam a forma “Salvador, Bahia e regiões próximas” sem enumerar cidades. Não foram confirmados números ou depoimentos, então nenhum foi criado. O domínio canônico informado foi `https://robertsolar.com.br/`; SSR e prerender foram autorizados. Também foi autorizada a criação da política de privacidade.
 
-Também serão necessários, antes de concluir SEO/publicação, domínio canônico e destino/conteúdo da política de privacidade. Para substituir a fonte genérica dos destaques por Fraunces Italic, preciso da sua aprovação depois de apresentar uma amostra visual.
+A preferência tipográfica para trocar a fonte serifada dos destaques continua pendente de amostra e aprovação. Por isso, a tipografia não foi substituída.
 
-### Próxima etapa
+## Implementação concluída
 
-Após suas respostas, iniciar a Fase 1 no caminho real `src/app/clone/**`, confirmar que o espelho continua fora de assets/styles e validar a saída do build. As próximas fases permanecem pendentes deste diagnóstico e das aprovações solicitadas.
+- O caminho real do clone, `src/app/clone/**`, está excluído da compilação Angular; build e arquivos públicos não referenciam nem copiam a pasta de estudo.
+- SSR e prerender publicam `/` e `/privacidade`; APIs do navegador e animações são iniciadas apenas no cliente, e as diretivas de reveal deixam o conteúdo visível no HTML servido.
+- GSAP/ScrollTrigger e Lenis implementam reveals, parallax leve no desktop e rolagem suave em ponteiro fino. As bibliotecas são carregadas sob demanda, liberadas ao sair da landing e desativadas com `prefers-reduced-motion`.
+- A seção Economia recebeu a frase aprovada. Nenhum contador, depoimento ou parceiro foi adicionado.
+- O formulário mantém o destino WhatsApp, agora com consentimento obrigatório, link para a política, máscara de moeda e validações. A política descreve o fluxo sem alegar armazenamento próprio dos envios.
+- Navegação mobile tem estado ARIA, fechamento por Escape e contenção de foco; as etapas do processo usam tabs ARIA com setas, Home e End; os vídeos do carrossel só reproduzem por ação do visitante.
+- Foram configurados title/description, canonical, Open Graph/Twitter, JSON-LD sem endereço ou avaliação inventados, robots/sitemap, favicon/manifest e imagem social 1200×630 baseada em foto de instalação existente.
+- Fotos do carrossel têm variantes JPEG responsivas, `srcset`, carregamento tardio e dimensões estáveis. No mobile, a mídia do Hero usa uma imagem estática prioritária; o vídeo decorativo permanece disponível em desktop.
+
+## Lighthouse mobile — comparação
+
+O Lighthouse foi executado na landing prerenderizada com Lighthouse 12.8.2, Edge, emulação Android 11 / Moto G Power (2022). Pontuações podem variar entre execuções locais.
+
+| Execução | Performance | Acessibilidade | Boas práticas | SEO | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Linha de base | 40 | 95 | 96 | 91 | 19,5 s | 19,9 s | 580 ms | 0 |
+| Após implementação | 53 | 100 | 100 | 100 | 5,8 s | 14,5 s | 310 ms | 0 |
+
+O FCP, LCP e TBT medidos melhoraram em relação à linha de base; a performance ainda não atinge a meta de 95. O build manteve o aviso de orçamento inicial já presente na linha de base: 647,01 kB contra o limite configurado de 500 kB (linha de base: 603,54 kB). O bundle gzip estimado é 153,07 kB. Essa pendência deve ser resolvida antes de considerar a meta de performance alcançada.
+
+## Verificações
+
+- `npm run build`: concluído; prerenderizou 2 rotas. Permanece o aviso de orçamento acima descrito.
+- SSR HTTP: `/`, `/privacidade`, `/robots.txt` e `/sitemap.xml` retornaram conteúdo/código 200; a landing e a política estão presentes no HTML servido.
+- Viewports 320, 375, 414, 768, 1024, 1280, 1440, 1920 e 2560 px: `documentElement.scrollWidth` igual à largura do viewport, sem overflow horizontal.
+- Interação verificada no navegador: menu abre, fecha com Escape; a seta direita seleciona a etapa seguinte; rota da política retorna 200.
+- Lighthouse acessibilidade: 100 após correção de contraste e hierarquia dos títulos.
+- Nenhuma suíte de testes unitários foi executada; as verificações acima foram build, navegador e Lighthouse.

@@ -42,7 +42,7 @@
           [class.cursor-not-allowed]="!canScrollLeft()" 
           [class.hover:bg-solar]="canScrollLeft()"
           [class.hover:border-solar]="canScrollLeft()" 
-          aria-label="Anterior"
+          aria-label="Rolar projetos para a esquerda"
           class="
             w-12 h-12 
             rounded-full 
@@ -71,7 +71,7 @@
           [class.cursor-not-allowed]="!canScrollRight()"
           [class.hover:bg-solar]="canScrollRight()" 
           [class.hover:border-solar]="canScrollRight()" 
-          aria-label="Próximo"
+          aria-label="Rolar projetos para a direita"
           class="
             w-12 h-12 
             rounded-full 
@@ -97,6 +97,9 @@
     <!-- Carrossel -->
     <div 
       #carouselContainer 
+      role="region"
+      aria-label="Projetos de energia solar"
+      tabindex="0"
       (scroll)="checkScrollPosition()"
       class="
         flex 
@@ -113,6 +116,8 @@
     >
       @for (item of workItems; track item.id) {
       <div
+        role="group"
+        [attr.aria-label]="'Projeto ' + item.id + ' de ' + workItems.length"
         class="
           w-full 
           sm:w-[380px] 
@@ -138,10 +143,11 @@
         <video 
           #videoElement 
           [src]="item.src" 
-          [poster]="item.poster || ''" autoplay muted 
-          [muted]="true" loop
+          [poster]="item.poster || ''"
           playsinline 
-          preload="auto" 
+          preload="metadata"
+          aria-label="Vídeo de instalação solar. Use os controles para reproduzir."
+          controls
           class="
             w-full 
             h-full 
@@ -149,9 +155,13 @@
           "
         ></video>
         } @else {
-        <img 
+        <img
           [src]="item.src" 
-          alt="Projeto de energia solar realizado"
+          [attr.srcset]="item.src.replace('.jpeg', '-600.jpeg') + ' 600w, ' + item.src.replace('.jpeg', '-1100.jpeg') + ' 1100w'"
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 460px, 520px"
+          loading="lazy"
+          decoding="async"
+          alt="Instalação de painéis solares"
           class="
             w-full 
             h-full 

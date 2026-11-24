@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, ViewChildren, QueryList, signal, AfterViewInit, OnDestroy, HostListener, inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, ViewChild, signal, AfterViewInit, OnDestroy, HostListener, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RevealOnScrollDirective } from '../../shared/reveal-on-scroll.directive';
@@ -22,10 +22,6 @@ export class OurWork implements AfterViewInit, OnDestroy {
   @ViewChild('carouselContainer') carouselContainer!: ElementRef<HTMLDivElement>;
   
   // Referência para todos os elementos de vídeo presentes no carrossel
-  @ViewChildren('videoElement') videoElements!: QueryList<ElementRef<HTMLVideoElement>>;
-
-  // Observador de interseção para controlar play/pause automático dos vídeos
-  private videoObserver!: IntersectionObserver;
 
   // Lista de itens do portfólio (imagens e vídeos de projetos)
   readonly workItems: WorkItem[] = [
@@ -51,50 +47,15 @@ export class OurWork implements AfterViewInit, OnDestroy {
       this.checkScrollPosition();
     }, 100);
 
-    // Inicializa o observer de reprodução dos vídeos
-    this.initVideoIntersectionObserver();
   }
 
   ngOnDestroy(): void {
-    // Desconecta o observer ao sair do componente para evitar vazamento de memória
-    if (this.videoObserver) {
-      this.videoObserver.disconnect();
-    }
   }
 
   // Recalcula o estado das setas sempre que a tela for redimensionada
   @HostListener('window:resize')
   onResize(): void {
     this.checkScrollPosition();
-  }
-
-  /**
-   * Configura o IntersectionObserver para dar play no vídeo quando 
-   * ele estiver visível na tela e pause quando sair.
-   */
-  private initVideoIntersectionObserver(): void {
-    const options: IntersectionObserverInit = {
-      root: this.carouselContainer.nativeElement,
-      threshold: 0.5 // Aciona quando pelo menos 50% do vídeo aparecer
-    };
-
-    this.videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const video = entry.target as HTMLVideoElement;
-        if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Ignora exceções caso o navegador restrinja autoplay
-          });
-        } else {
-          video.pause();
-        }
-      });
-    }, options);
-
-    // Inicia observando cada vídeo renderizado
-    this.videoElements.forEach(v => {
-      this.videoObserver.observe(v.nativeElement);
-    });
   }
 
   /**
